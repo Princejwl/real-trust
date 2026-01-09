@@ -1,9 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 
 export const Contact = () => {
+  // =====================
+  // CONTACT FORM STATE
+  // =====================
+  const [contact, setContact] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    city: "",
+  });
+  //  const [subscriberEmail, setSubscriberEmail] = useState("");
+  const [showFillMessage, setShowFillMessage] = useState(false); 
+
+  // =====================
+  // NEWSLETTER STATE
+  // =====================
+  const [subscriberEmail, setSubscriberEmail] = useState("");
+
+  // =====================
+  // CONTACT HANDLER
+  // =====================
+  const handleContactChange = (e) => {
+    setContact({ ...contact, [e.target.name]: e.target.value });
+  };
+
+  const submitContactForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("http://localhost:8080/api/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contact),
+      });
+
+      if (res.ok) {
+        alert("Contact details submitted successfully!");
+        setContact({ fullName: "", email: "", mobile: "", city: "" });
+      }
+    } catch (error) {
+      alert("Server error");
+    }
+  };
+
+  // =====================
+  // SUBSCRIBE HANDLER
+  // =====================
+  const submitSubscriber = async () => {
+    if (!subscriberEmail) return alert("Enter email");
+
+    try {
+      const res = await fetch("http://localhost:8080/api/subscribers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: subscriberEmail }),
+      });
+
+      if (res.ok) {
+        alert("Subscribed successfully!");
+        setSubscriberEmail("");
+      }
+    } catch (error) {
+      alert("Server error");
+    }
+  };
+
   return (
     <section id="contact">
-      {/* ===== CTA SECTION ===== */}
+      {/* ================= CTA ================= */}
       <div className="contact-cta">
         <div className="overlay">
           <div className="container text-center">
@@ -18,7 +83,61 @@ export const Contact = () => {
         </div>
       </div>
 
-      {/* ===== NEWSLETTER SECTION ===== */}
+      {/* ================= CONTACT FORM ================= */}
+      <div className="contact-form-section">
+        <div className="container">
+          <h2 className="text-center">Get Free Consultation</h2>
+          {showFillMessage && (
+      <p className="fill-message">
+        Please fill the consultation form below 👇
+      </p>
+    )}
+
+          <form className="contact-form" onSubmit={submitContactForm}>
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name"
+              value={contact.fullName}
+              onChange={handleContactChange}
+              required
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={contact.email}
+              onChange={handleContactChange}
+              required
+            />
+
+            <input
+              type="text"
+              name="mobile"
+              placeholder="Mobile Number"
+              value={contact.mobile}
+              onChange={handleContactChange}
+              required
+            />
+
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              value={contact.city}
+              onChange={handleContactChange}
+              required
+            />
+
+            <button type="submit" className="btn btn-custom">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* ================= NEWSLETTER ================= */}
       <div className="newsletter-section">
         <div className="container newsletter-flex">
           <ul className="footer-links">
@@ -31,41 +150,47 @@ export const Contact = () => {
 
           <div className="newsletter-box">
             <span>Subscribe to</span>
-            <input type="email" placeholder="Email Address" />
-            <button>Subscribe</button>
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={subscriberEmail}
+              onChange={(e) => setSubscriberEmail(e.target.value)}
+            />
+            <button href="#contact" onClick={() => {
+    setShowFillMessage(true);
+
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }}>Subscribe</button>
           </div>
         </div>
       </div>
 
-      {/* ===== FOOTER BOTTOM ===== */}
+      {/* ================= FOOTER ================= */}
       <div className="footer-bottom">
-  <div className="footer-container">
-    
-    {/* LEFT */}
-    <div className="footer-left">
-      © 2026 Real Trust. All Rights Reserved.
-    </div>
+        <div className="footer-container">
+          <div className="footer-left">
+            © 2026 Real Trust. All Rights Reserved.
+          </div>
 
-    {/* CENTER */}
-    <div className="footer-center">
-      <img
-        src="img/task/images/logo.svg"
-        alt="Real Trust Logo"
-        className="footer-logo"
-      />
-    </div>
+          <div className="footer-center">
+            <img
+              src="img/task/images/logo.svg"
+              alt="Real Trust Logo"
+              className="footer-logo"
+            />
+          </div>
 
-    {/* RIGHT */}
-    <div className="footer-right">
-      <i className="fa fa-facebook"></i>
-      <i className="fa fa-twitter"></i>
-      <i className="fa fa-instagram"></i>
-      <i className="fa fa-linkedin"></i>
-    </div>
-
-  </div>
-</div>
-
+          <div className="footer-right">
+            <i className="fa fa-facebook"></i>
+            <i className="fa fa-twitter"></i>
+            <i className="fa fa-instagram"></i>
+            <i className="fa fa-linkedin"></i>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
+export default Contact;

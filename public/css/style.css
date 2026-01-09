@@ -784,3 +784,62 @@ a:focus,
 .footer-right i:hover {
   color: #5ca9fb;
 }
+
+/* ================= CONTACT FORM SECTION ================= */
+
+.contact-form-section {
+  background: #ffffff;
+  padding: 60px 0;
+}
+
+.contact-form-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+/* FORM LAYOUT */
+.contact-form {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* INPUTS */
+.contact-form input {
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #777;
+  border-radius: 4px;
+  font-size: 15px;
+  min-width: 200px;
+}
+
+/* BUTTON */
+.contact-form button {
+  height: 48px;
+  padding: 0 36px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+  .contact-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-form input,
+  .contact-form button {
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
