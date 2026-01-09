@@ -1,13 +1,6 @@
 import { useState } from "react";
 
 export default function Projects() {
-  const [projects, setProjects] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    image: "",
-    description: "",
-  });
-
 
   return (
     <div>
