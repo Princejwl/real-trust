@@ -8,10 +8,6 @@ export default function Projects() {
     description: "",
   });
 
-  const addProject = () => {
-    setProjects([...projects, form]);
-    setForm({ name: "", image: "", description: "" });
-  };
 
   return (
     <div>

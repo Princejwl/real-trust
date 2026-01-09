@@ -1,5 +1,5 @@
 export default function Subscribers() {
-  const emails = ["test@gmail.com", "admin@realtrust.com"];
+
 
   return(
     <div>

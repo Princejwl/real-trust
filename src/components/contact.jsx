@@ -45,26 +45,7 @@ export const Contact = () => {
   };
 
   // =====================
-  // SUBSCRIBE HANDLER
-  // =====================
-  const submitSubscriber = async () => {
-    if (!subscriberEmail) return alert("Enter email");
-
-    try {
-      const res = await fetch("http://localhost:8080/api/subscribers", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: subscriberEmail }),
-      });
-
-      if (res.ok) {
-        alert("Subscribed successfully!");
-        setSubscriberEmail("");
-      }
-    } catch (error) {
-      alert("Server error");
-    }
-  };
+  
 
   return (
     <section id="contact">
