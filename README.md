@@ -8,7 +8,7 @@ The application allows users to submit their contact details, which are securely
 ## 🔗 Live Application
 
 ### 🌐 Frontend (Netlify)
-https://real-trust.netlify.app
+https://realtrustt.netlify.app/
 
 ### ⚙️ Backend API (Render)
 https://real-trust-backend-thpj.onrender.com
