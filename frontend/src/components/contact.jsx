@@ -29,11 +29,15 @@ export const Contact = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:8080/api/contacts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contact),
-      });
+      const res = await fetch(
+  "https://real-trust-backend-thpj.onrender.com/api/contacts",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(contact),
+  }
+);
+
 
       if (res.ok) {
         alert("Contact details submitted successfully!");

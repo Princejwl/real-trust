@@ -4,7 +4,7 @@ export default function Contacts() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/contacts")
+    fetch("https://real-trust-backend-thpj.onrender.com/api/contacts")
       .then(res => res.json())
       .then(data => setContacts(data));
   }, []);
