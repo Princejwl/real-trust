@@ -46,7 +46,7 @@ export const Header = (props) => {
                       <option>Design</option>
                     </select>
 
-                    <button href="#contact" className="btn btn-form">
+                    <button href="#contact" className=" btn-form">
                       Get Free Consultation
                     </button>
                   </form>

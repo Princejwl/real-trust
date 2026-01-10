@@ -19,14 +19,16 @@ export const Gallery = (props) => {
             ? props.data.map((project, index) => (
                 <div key={index} className="col-md-4">
                   <div className="project-card">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="img-responsive"
-                    />
+                    <div className="project-img">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                      />
+                    </div>
+
                     <div className="project-content">
                       <h4>{project.title}</h4>
-                      <a href="#contact" className="btn btn-project">
+                      <a href="#contact" className="btn btn-custom">
                         Read More
                       </a>
                     </div>
